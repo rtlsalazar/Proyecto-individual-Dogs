@@ -7,7 +7,6 @@
   "type": "module",
   "scripts": {
     "postinstall": "(cd app-frontend && yarn) && (cd..) && (cd app-backend && yarn)",
-    "dev": "(cd app-frontend && yarn dev) && (cd..) && (cd app-backend && yarn dev)",
     "build": "(cd app-frontend && yarn build) && (cd..) && (cd app-backend && yarn build)"
   }
 }
