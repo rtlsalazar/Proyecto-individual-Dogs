@@ -1,0 +1,261 @@
+$root-element: ".component-Header";
+#{$root-element}{
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+header.desktop{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  top: 0;
+  position: fixed;
+  width: calc(100% - 15rem); // remaining space
+  margin-left: 15rem; // aside width
+  padding: 0.75rem 2rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media only screen and (max-width: 767px) {/* mobile */
+    display: none;
+  }
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  border-bottom: 1px solid #E0E0E0;
+  background: #FFF;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  form{
+    display: flex;
+    width: 26.9375rem;
+    padding: 0.55rem 1rem;
+    align-items: center;
+    gap: 1rem;
+
+    border-radius: 0.5rem;
+    border: 1px solid #E0E0E0;
+    background: var(--Background-Color, #FAFAFA);
+
+    input[type=text]{
+      width: 100%;
+      font-family: Poppins;
+      font-size: 0.85rem;
+      font-weight: 400;
+      outline: none;
+
+      &::placeholder{
+        color: #B3B3B3;
+      }
+    }
+
+    button:hover{
+      cursor: pointer;
+    }
+  }
+}
+
+header.mobile{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  top: 0;
+  position: fixed;
+  width: 100%;
+  height: 3.8rem;
+  padding: 0 1.25rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @media only screen and (min-width: 767px) {/* desktop */
+    display: none;
+  }
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  border-bottom: 1px solid #E0E0E0;
+  background: #ffff;
+  backdrop-filter: blur(3px);
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  > h1{
+    color: #42A7C3;
+    font-family: Nunito;
+    font-size: 1.75rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 140%; /* 2.45rem */
+  }
+
+  >button{
+    display: flex;
+    padding: 0.5rem 0.625rem;
+    align-items: center;
+    gap: 16.625rem;
+
+    border-radius: 0.5rem;
+    border: 1px solid #E0E0E0;
+    background: var(--Background-Color, #FAFAFA);
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+dialog{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  $dialog-width: min(25rem, 90vw);
+  width: $dialog-width;
+  left: calc(50vw - ($dialog-width / 2));
+  top: 17vh;
+  border: 0;
+  padding: 0;
+  border-radius: 0.5rem;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  &[open]{
+    animation: 0.8s slide-in-up, .4s fade-in;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    animation: fade-in 0.5s;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+dialog > form{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 0.8rem;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  > header{
+    display: flex;
+    padding: 0.70rem 0.70rem 0.70rem 1.5rem;
+    border-bottom: 1px solid #E6E6E6;
+
+    > h1{
+      font-size: 0.95rem;
+     font-weight: 500;
+    }
+    
+    > img:hover{
+      cursor: pointer;
+    }
+  }
+
+  > footer{
+    display: flex;
+    padding: 0.70rem 1.5rem;
+    justify-content: space-between;
+    border-top: 1px solid #E6E6E6;
+    background: #FAFAFA;
+
+    button{
+      display: flex;
+      padding: 0rem 1.5rem;
+      align-items: center;
+      border-radius: 0.25rem;
+      transition: box-shadow 0.2s;
+
+      /* Text Style */
+      text-align: center;
+      line-height: 2.3;
+      font-weight: 600;
+      font-variant: all-small-caps;
+      font-family: Montserrat;
+
+      &.cancel{
+        color: #000;
+        background: #FFF;
+        border: 1px solid #E6E6E6;
+      }
+
+      &.send{
+        color: #FFF;
+        background: #42A7C3;
+
+      }
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+dialog > form > fieldset {
+  display: flex;
+  padding: 0.55rem 1rem;
+  gap: 0.5rem;
+  border: none;
+
+  > input[type=text]{
+    width: 100%;
+    font-family: Poppins;
+    font-size: 0.85rem;
+    font-weight: 400;
+    outline: none;
+
+    &::placeholder{
+      color: #B3B3B3;
+    }
+  }
+
+  > h2{
+    color: #000;
+    font-family: Poppins;
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+}
+
+/*
+* -- Animations definitions ---------------------------------------------------------
+*/
+@keyframes slide-in-up {
+  from {
+    transform: translateY(-6%)
+  }
+  to {
+    transform: translateY(0%)
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+}

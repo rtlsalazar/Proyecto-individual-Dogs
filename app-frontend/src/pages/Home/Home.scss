@@ -1,0 +1,187 @@
+$root-element: ".page-Home";
+#{$root-element}{
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+header{
+  display: flex;
+  height: 5rem;;
+  padding: 0.85rem 0rem;
+  justify-content: center;
+
+  > h1{
+    font-family: Nunito;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #42A7C3;
+  }
+}
+
+main{
+  display: grid;
+  /* para establecer el ancho maximo y minimo del contenido en la pantalla*/
+  grid-template-columns: clamp(280px, 100vw, 1376px);
+
+  @media only screen and (min-width: 767px) {/* desktop */
+    height: calc(100vh - 8rem);
+  }
+}
+
+footer{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  height: 3rem;;
+  display: flex;
+  padding: 1rem 0rem;
+  justify-content: center;
+
+  @media only screen and (max-width: 767px) {/* mobile */
+    margin: 1.5rem 0;
+  }
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  >p{
+    color: #8A8A8A;
+    font-family: Poppins;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+main > section.hero{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: grid;
+
+  @media only screen and (max-width: 767px) {/* mobile */
+    row-gap: 2rem;
+    grid-template-columns: 3.5vw 1fr 3.5vw;
+    grid-template-areas:
+      ". hero-img ."
+      ". hero-desc .";
+  }
+
+  @media only screen and (min-width: 767px) {/* desktop */
+    gap: 3.5vw;
+    grid-template-columns: 2vw 1fr 1fr 2vw;
+    grid-template-areas:
+      ". hero-desc hero-img .";
+  }
+}
+
+main > section.hero > .hero-desc{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  grid-area: hero-desc;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 2rem;
+}
+
+main > section.hero > .hero-desc > .body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  text-align: center;
+
+  h1{
+    color: #212B36;
+    font-family: Nunito;
+    font-size: 2.375rem;
+    font-weight: 900;
+    line-height: 113.9%; /* 3.84413rem */
+    letter-spacing: 0.01688rem;
+
+    mark{
+      color: #42A7C3;
+      background: none;
+    }
+  }
+
+  p{
+    color: #565656;
+    font-family: Nunito;
+    font-size: 1.125rem;
+    font-weight: 600;
+    line-height: 135.4%; /* 2.031rem */
+    letter-spacing: 0.0075rem;
+  }
+
+  a{
+    display: grid;
+    place-content: center;
+    width: 15rem;
+    padding: 1rem 6rem;
+    border-radius: 1rem;
+    background: #52BBD6;
+
+    /* text styling*/
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 1.2rem;
+    font-weight: 800;
+    line-height: 113.9%; /* 2.278rem */
+    letter-spacing: 0.01rem;
+    text-decoration: none;
+  }
+}
+
+main > section.hero > .hero-desc > a{
+  display: grid;
+  place-content: center;
+  width: 15rem;
+  padding: 1rem 6rem;
+  border-radius: 1rem;
+  background: #52BBD6;
+
+  /* text styling*/
+  color: #FFF;
+  font-family: Nunito;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 113.9%; /* 2.278rem */
+  letter-spacing: 0.01rem;
+  text-decoration: none;
+}
+
+main > section.hero > .hero-img{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  grid-area: hero-img;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  @media only screen and (max-width: 767px) {/* mobile */
+    img{
+      border-radius: 1rem;
+    }
+  }
+
+  @media only screen and (min-width: 767px) {/* desktop */
+    img{
+      height: 78vh;
+      border-radius: 1rem;
+      object-fit: scale-down;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+}

@@ -1,0 +1,111 @@
+$root-element: ".page-DogsDetails";
+#{$root-element}{
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+main{
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+
+  @media only screen and (min-width: 768px) {/* desktop */
+    width: calc(100% - 15rem);
+    margin-left: 15rem;
+    margin-top: 6.25rem;
+    margin-bottom: 3rem;
+  }
+  @media only screen and (max-width: 767px) {/* mobile */
+    margin-top: 6rem;
+    margin-bottom: 3rem;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+main > article{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: flex;
+  width: min(28rem, 95vw);
+  padding: 2rem 1.5rem;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+  gap: 1.7rem;
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  border-radius: 0.625rem;
+  background: #FFF;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.10);
+}
+
+main > article > header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+
+  > h1{
+    color: #42A7C3;
+    font-size: 1.375rem;
+    font-weight: 600;
+  }
+
+  > h2{
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 113.9%; /* 1.139rem */
+    letter-spacing: 0.005rem;
+  }
+}
+
+main > article > figure{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  width: min(30rem, 95%);
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  > img{
+    height: 100%;
+    border-radius: 0.825rem;
+    object-fit: cover;
+  }
+}
+
+main > article > ul{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  list-style-type: none;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  li{
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 500;
+
+
+    .item{
+      color: #42A7C3;
+    }
+  }
+
+}
+
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+
+}

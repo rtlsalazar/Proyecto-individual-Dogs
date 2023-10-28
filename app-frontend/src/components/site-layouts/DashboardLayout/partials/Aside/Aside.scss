@@ -1,0 +1,96 @@
+$root-element: ".component-Aside";
+#{$root-element}{
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+aside{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  top: 0;
+  position: fixed;
+  height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  gap: 2.4375rem;
+  flex-direction: column;
+  align-items: center;
+
+  @media only screen and (max-width: 767px) {/* mobile */
+    width: 75vw;
+    left: -75vw;
+    transition: left .3s ease-in-out;
+
+    &.active{
+      left: 0;
+    }
+  }
+
+  @media only screen and (min-width: 767px) {/* desktop */
+    left: 0;
+    width: 15rem;
+  }
+
+  /*
+  * -- Box and text styles definitions ----------------------------------------------
+  */
+  border-right: 1px solid #E0E0E0;
+  background: hsla(0, 0, 98, 0.97);
+  backdrop-filter: blur(3px);
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  > h1{
+    color: #42A7C3;
+    font-family: Nunito;
+    font-size: 1.75rem;
+    font-weight: 800;
+  }
+
+  > a{
+    display: flex;
+    padding: 0.625rem 1rem;
+    justify-content: center;
+    align-self: stretch;
+
+    border-radius: 0.25rem;
+    border: 1px solid #E0E0E0;
+    background: #FAFAFA;
+    text-decoration: none;
+    color: #707070;
+  }
+}
+
+aside > .navigation{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h1{
+    color: #A5A5A5;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.5rem; /* 184.615% */
+  }
+
+  nav{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    a{
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: #686868;
+      text-decoration: none;
+
+      &.active{
+        font-weight: 600;
+      }
+    }
+  }
+}
+}

@@ -1,0 +1,159 @@
+$root-element: ".modal-FilterModal";
+#{$root-element}{
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+dialog{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  $dialog-width: min(25rem, 90vw);
+  width: $dialog-width;
+  left: calc(50vw - ($dialog-width / 2));
+  top: 17vh;
+  border: 0;
+  padding: 0;
+  border-radius: 0.5rem;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  &[open]{
+    animation: 0.8s slide-in-up, .4s fade-in;
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    animation: fade-in 0.5s;
+  }
+}
+
+/* ---------------------------------------------------------------------------------------------- */
+/*  */
+/* ---------------------------------------------------------------------------------------------- */
+dialog > form{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+  /*
+  * -- Subcomponents and behaviours definitions -------------------------------------
+  */
+  > header{
+    display: flex;
+    padding: 0.70rem 0.70rem 0.70rem 1.5rem;
+    border-bottom: 1px solid #E6E6E6;
+
+    > h1{
+      font-size: 0.95rem;
+     font-weight: 500;
+    }
+    
+    > img:hover{
+      cursor: pointer;
+    }
+  }
+
+  > footer{
+    display: flex;
+    padding: 0.70rem 1.5rem;
+    justify-content: space-between;
+    border-top: 1px solid #E6E6E6;
+    background: #FAFAFA;
+
+    button{
+      display: flex;
+      padding: 0rem 1.5rem;
+      align-items: center;
+      border-radius: 0.25rem;
+      transition: box-shadow 0.2s;
+
+      /* Text Style */
+      text-align: center;
+      line-height: 2.3;
+      font-weight: 600;
+      font-variant: all-small-caps;
+      font-family: Montserrat;
+
+      &.cancel{
+        color: #000;
+        background: #FFF;
+        border: 1px solid #E6E6E6;
+      }
+
+      &.send{
+        color: #FFF;
+        background: #42A7C3;
+
+      }
+      &:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+}
+
+dialog > form > fieldset {
+  display: flex;
+  padding: 1rem 2rem;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: none;
+
+  > h2{
+    color: #000;
+    font-family: Poppins;
+    font-size: 0.85rem;
+    font-weight: 400;
+  }
+}
+
+dialog > form > fieldset > .options-grid{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: grid;
+  row-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 50%));
+  grid-template-rows: masonry;
+}
+
+dialog > form > fieldset > .options-grid > .tile{
+  /*
+  * -- Box model and Layout definitions ---------------------------------------------
+  */
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/*
+* -- Animations definitions ---------------------------------------------------------
+*/
+@keyframes slide-in-up {
+  from {
+    transform: translateY(-6%)
+  }
+  to {
+    transform: translateY(0%)
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+}
