@@ -31,29 +31,35 @@ article.dogs-grid > header{
   /*
   * -- Subcomponents and behaviours definitions -------------------------------------
   */
-  form, button{
+  .options{
     display: flex;
-    height: 2.1rem;
-    padding: 0.25rem 1rem;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0.25rem;
-    border: 1px solid #E0E0E0;
-    background: #FAFAFA;
-    border-radius: 4px;
-    font-size: 0.95rem;
-    color: #686868;
+    gap: 0.5rem;
 
-    select{
-      width: 1rem;
-    }
-
-    label{
+    form, button{
       display: flex;
+      height: 2.1rem;
+      padding: 0.25rem 0.85rem;
+      justify-content: space-between;
       align-items: center;
       gap: 0.25rem;
+      border: 1px solid #E0E0E0;
+      background: #FAFAFA;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      color: #686868;
+
+      select{
+        width: 1rem;
+      }
+
+      label{
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+      }
     }
   }
+
 }
 
 /* ---------------------------------------------------------------------------------------------- */
