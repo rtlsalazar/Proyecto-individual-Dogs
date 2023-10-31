@@ -2,9 +2,7 @@
 
   Abstract:
     Este componente muestra una lista de perros que coinciden con el nombre que
-    el usuario busca en la barra de navegación. El usuario puede filtrar y ordenar la
-    lista según el origen y el temperamento de los perros, y ver los detalles de cada
-    perro al hacer clic en su imagen.
+    el usuario busca en la barra de navegación.
 
 */
 import "./DogsSearch.scss";
@@ -12,7 +10,7 @@ import React, {useEffect, useCallback, useRef, useState} from "react";
 import {useLocation} from "react-router-dom";
 import CardsGrid from '@/components/ui-patterns/CardsGrid';
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '@/store/dogs';
+import * as actions from '@/store/actions';
 
 
 function DogsSearch() {
@@ -21,7 +19,7 @@ function DogsSearch() {
   // --------------------------------------------------------------------------------
   const search = useLocation().search;
   let dispatch = useDispatch();
-  let dogsList = useSelector(state => state);
+  let dogsList = useSelector(state => state.list);
 
   // --------------------------------------------------------------------------------
   // Initialization

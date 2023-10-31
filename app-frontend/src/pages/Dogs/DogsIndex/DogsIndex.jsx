@@ -2,22 +2,21 @@
 
   Abstract:
     Este componente muestra una lista de perros con sus características y temperamentos, obtenidos
-    desde una API externa y una base de datos local a travez del estado local. El usuario puede filtrar y ordenar
-    la lista según diferentes criterios, como el nombre, el peso, la altura y el origen de los perros.
+    desde una API externa y una base de datos local a travez del estado local.
 
 */
 import "./DogsIndex.scss";
 import React, {useEffect, useState} from "react";
 import CardsGrid from '@/components/ui-patterns/CardsGrid';
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '@/store/dogs';
+import * as actions from '@/store/actions';
 
 function DogsIndex() {
   // --------------------------------------------------------------------------------
   // States
   // --------------------------------------------------------------------------------
   let dispatch = useDispatch();
-  let dogsList = useSelector(state => state);
+  let dogsList = useSelector(state => state.list);
 
   // --------------------------------------------------------------------------------
   // Initialization
