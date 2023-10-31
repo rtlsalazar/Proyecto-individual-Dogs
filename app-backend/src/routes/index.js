@@ -47,7 +47,8 @@ async function get_dogs(req, res, next){
     let dogs_list = {"database": db_result, "api": api_result};
     res.json(dogs_list)
   } catch (error) {
-    next(error);
+      console.log(error)
+      next(error);
   }
 }
 
@@ -94,7 +95,8 @@ async function get_dog_by_id(req, res, next) {
 
     let dogs_list = {"database": db_result, "api": api_result};
   } catch (error) {
-    next(error);
+      console.log(error)
+      next(error);
   }
 }
 
@@ -104,7 +106,7 @@ router.get("/dogs/:dog_id", get_dog_by_id);
 *  Este manejador obtiene todos los temperamentos y los guarda en la base de datos
 */
 async function refresh_temperaments(req, res, next) {
-  //try {
+  try {
     // Agregar los temperamentos en la base de datos si no existen
     let all_temps = await Temperaments.findAll();
     if (all_temps.length === 0) {
@@ -131,11 +133,12 @@ async function refresh_temperaments(req, res, next) {
     if(res){
       res.send(all_temps);
     }
-  //} catch (error) {
-  //    if(next){
-  //      next(error);
-  //    }
-  //}
+  } catch (error) {
+      if(next){
+        console.log(error)
+        next(error);
+      }
+  }
 }
 
 router.get('/temperaments', refresh_temperaments);
