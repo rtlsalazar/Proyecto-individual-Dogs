@@ -23,73 +23,50 @@ function DogsCreate() {
   // States
   // --------------------------------------------------------------------------------
   const navigateTo = useNavigate();
-  const [errors, setErrors] = useState({}); // state para guardar los errores encontrados en la validación
+
+  // valores del formulario
+  const [values, setValues] = useState({
+    name: "",
+    image: "",
+    height: "",
+    weight: "",
+    life_span: "",
+    temperament: "",
+  });
+
+  // mensajes de error, en caso de haber
+  const [errors, setErrors] = useState({
+    name: "",
+    image: "",
+    height: "",
+    weight: "",
+    life_span: "",
+    temperament: "",
+  });
 
   // --------------------------------------------------------------------------------
   // Methods
   // --------------------------------------------------------------------------------
-  async function HandleonSubmit(event) {
-    event.preventDefault(); // evita el envío del formulario por defecto
+  const handleChange = (e) => {
+    // Obtenemos el nombre y el valor del campo
+    const { name, value } = e.target;
 
-    const formData = new FormData(event.target); // obtiene los datos del formulario
-    const data = Object.fromEntries(formData.entries()); // convierte los datos a un objeto
-    
-    const validation = validate(data); // valida los datos usando la función validate
-    if (validation.isValid) {
-      // si no hay errores de validación, se puede enviar el formulario
-      api.create(data.name, data.image, data.height, data.weight, data.life_span, data.temperament);
-      setErrors({});
+    // Actualizamos el estado con el nuevo valor
+    setValues({ ...values, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // iteramos sobre los elementos del objeto que contiene el los errores si todos estan vacios entonces no hay error
+    const isValid = Object.values(errors).every((error) => error === "");
+
+    if (isValid) {
+      api.create(values.name, values.image, values.height, values.weight, values.life_span, values.temperament);
+      alert("Formulario enviado");
       navigateTo('/home');
     }
-    else {
-      // si hay errores de validación, se actualiza el estado errors con los mensajes de error
-      setErrors(validation.errors);
-    }
-  }
-
-  function validate(data) {
-    // esta función recibe un objeto con los datos del formulario y devuelve un objeto con dos propiedades: isValid y errors
-    let isValid = true; // indica si los datos son válidos o no
-    let errors = {}; // guarda los mensajes de error para cada campo
-
-    // se valida el campo name, que debe ser una cadena no vacía
-    if (!data.name || data.name.trim() === "") {
-      isValid = false;
-      errors.name = "El nombre es obligatorio";
-    }
-
-    // se valida el campo image, que debe ser una url válida
-    if (!data.image || !isURL(data.image)) {
-      isValid = false;
-      errors.image = "La imagen debe ser una url válida";
-    }
-
-    // se valida el campo weight, que debe ser un rango de números separados por un guión
-    if (!data.height || !isNumberRange(data.height)) {
-      isValid = false;
-      errors.height = "La altura debe ser un rango de números separados por un guión. Ejemplo: 64 - 69";
-    }
-
-    // se valida el campo weight, que debe ser un rango de números separados por un guión
-    if (!data.weight || !isNumberRange(data.weight)) {
-      isValid = false;
-      errors.weight = "El peso debe ser un rango de números separados por un guión. Ejemplo: 5 - 7";
-    }
-
-    // se valida el campo life_span, que debe ser un número seguido de una unidad de tiempo
-    if (!data.life_span || !isLifeSpan(data.life_span)) {
-      isValid = false;
-      errors.life_span = "La esperanza de vida debe ser un número seguido de una unidad de tiempo. Ejemplo: 11 years";
-    }
-
-    // se valida el campo temperament, que debe ser una lista de adjetivos separados por comas
-    if (!data.temperament || !isTemperamentList(data.temperament)) {
-      isValid = false;
-      errors.temperament = "El temperamento debe ser una lista de adjetivos separados por comas. Ejemplo: Wild, Hardworking, Dutiful";
-    }
-
-    return {isValid, errors}; // se devuelve el objeto con las propiedades isValid y errors
-  }
+  };
 
   function isURL(str) {
     // esta función recibe una cadena y devuelve true si es una url válida o false en caso contrario
@@ -118,9 +95,58 @@ function DogsCreate() {
   // --------------------------------------------------------------------------------
   // Initialization
   // --------------------------------------------------------------------------------
+  /*
+  * Usamos el hook useEffect para validar el formulario cada vez que cambia algún valor
+  */
   useEffect(() => {
-    document.title = 'Agrega tu nuevo mejor amigo!';
-  }, []);
+    // Declaramos un objeto para guardar los mensajes de error
+    let errors = {};
+
+    // se valida el campo name, que debe ser una cadena no vacía
+    if (!values.name) {
+      errors.name = "El nombre es obligatorio";
+    }else{
+      errors.name = "";
+    }
+
+    // se valida el campo image, que debe ser una url válida
+    if (!values.image || !isURL(values.image)) {
+      errors.image = "La imagen debe ser una url válida";
+    }else{
+      errors.image = "";
+    }
+
+    // se valida el campo weight, que debe ser un rango de números separados por un guión
+    if (!values.height || !isNumberRange(values.height)) {
+      errors.height = "La altura debe ser un rango de números separados por un guión. Ejemplo: 64 - 69";
+    }else{
+      errors.height = "";
+    }
+
+    // se valida el campo weight, que debe ser un rango de números separados por un guión
+    if (!values.weight || !isNumberRange(values.weight)) {
+      errors.weight = "El peso debe ser un rango de números separados por un guión. Ejemplo: 5 - 7";
+    }else{
+      errors.weight = "";
+    }
+
+    // se valida el campo life_span, que debe ser un número seguido de una unidad de tiempo
+    if (!values.life_span || !isLifeSpan(values.life_span)) {
+      errors.life_span = "La esperanza de vida debe ser un número seguido de una unidad de tiempo. Ejemplo: 11 years";
+    }else{
+      errors.life_span = "";
+    }
+
+    // se valida el campo temperament, que debe ser una lista de adjetivos separados por comas
+    if (!values.temperament || !isTemperamentList(values.temperament)) {
+      errors.temperament = "El temperamento debe ser una lista de adjetivos separados por comas. Ejemplo: Wild, Hardworking, Dutiful";
+    }else{
+      errors.temperament = "";
+    }
+
+    // Actualizamos el estado con el nuevo objeto de errores
+    setErrors(errors);
+  }, [values]); // Usamos values como dependencia del efecto
 
   // --------------------------------------------------------------------------------
   // Rendering
@@ -128,49 +154,97 @@ function DogsCreate() {
   return (
     <div className="page-DogsCreate">
       <main>
-        <form onSubmit={HandleonSubmit}>
+        <form onSubmit={handleSubmit}>
           <header>
-            <h1>Agrega tu nuevo <mark>mejor amigo!</mark></h1>
-            <p>Completa los datos de tu nuevo compañero peludo y súbelo a nuestra base de datos de perros</p>
+            <h1>
+              Agrega tu nuevo <mark>mejor amigo!</mark>
+            </h1>
+            <p>
+              Completa los datos de tu nuevo compañero peludo y súbelo a nuestra base de datos de perros
+            </p>
           </header>
 
           <fieldset>
             <div className="field">
               <label>Nombre</label>
-              <input type="text" name="name" placeholder="ejemplo: chihuahua"></input>
+              <input
+                type="text"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+                placeholder="ejemplo: chihuahua"
+              />
               {errors.name && <span className="error">{errors.name}</span>}
             </div>
             <div className="field">
               <label>Imagen</label>
-              <input type="text" name="image" placeholder="url de la imagen del animalito"></input>
+              <input
+                type="text"
+                name="image"
+                value={values.image}
+                onChange={handleChange}
+                placeholder="url de la imagen del animalito"
+              />
               {errors.image && <span className="error">{errors.image}</span>}
             </div>
             <div className="field">
               <label>Altura (cm)</label>
-              <input type="text" name="height" placeholder="ejemplo: 64-69"></input>
+              <input
+                type="text"
+                name="height"
+                value={values.height}
+                onChange={handleChange}
+                placeholder="ejemplo: 64-69"
+              />
               {errors.height && <span className="error">{errors.height}</span>}
             </div>
             <div className="field">
               <label>Peso (kg)</label>
-              <input type="text" name="weight" placeholder="ejemplo: 5-7"></input>
+              <input
+                type="text"
+                name="weight"
+                value={values.weight}
+                onChange={handleChange}
+                placeholder="ejemplo: 5-7"
+              />
               {errors.weight && <span className="error">{errors.weight}</span>}
             </div>
             <div className="field">
               <label>Esperanza de vida</label>
-              <input type="text" name="life_span" placeholder="ejemplo: 11 years"></input>
-              {errors.life_span && <span className="error">{errors.life_span}</span>}
+              <input
+                type="text"
+                name="life_span"
+                value={values.life_span}
+                onChange={handleChange}
+                placeholder="ejemplo: 11 years"
+              />
+              {errors.life_span && (
+                <span className="error">{errors.life_span}</span>
+              )}
             </div>
             <div className="field">
               <label>Temperamento</label>
-              <input type="text" name="temperament" placeholder="ejemplo: Intelligent, Affectionate, Energetic"></input>
-              {errors.temperament && <span className="error">{errors.temperament}</span>}
+              <input
+                type="text"
+                name="temperament"
+                value={values.temperament}
+                onChange={handleChange}
+                placeholder="ejemplo: Intelligent, Affectionate, Energetic"
+              />
+              {errors.temperament && (
+                <span className="error">{errors.temperament}</span>
+              )}
             </div>
           </fieldset>
 
           <footer>
-            <button class="send" value="send">Agregar</button> 
+              <input
+                class="send"
+                value="Agregar"
+                type="submit"
+                disabled={!Object.values(errors).every((error) => error === "")}
+              />
           </footer>
-
         </form>
       </main>
     </div>

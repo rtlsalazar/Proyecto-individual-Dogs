@@ -44,7 +44,7 @@ function Home() {
       </main>
 
       <footer>
-        <p>© Diseñado y programado con ❤ por Moisés Salazar.</p>
+        <p>Diseñado y programado con ❤ por Moisés</p>
       </footer>
 
     </div>

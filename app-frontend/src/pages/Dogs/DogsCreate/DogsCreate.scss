@@ -71,9 +71,9 @@ main > form > fieldset{
   * -- Box model and Layout definitions ---------------------------------------------
   */
   display: flex;
-  padding: 0 0.625rem;
   flex-direction: column;
-  align-self: stretch;
+  align-self: center;
+  width: 100%;
   gap: 1.5rem;
   border: none;
 
@@ -83,6 +83,7 @@ main > form > fieldset{
   > .field{
     display: flex;
     flex-direction: column;
+    align-content: center;
     gap: 0.525rem;
 
     /* text styles */
@@ -112,7 +113,7 @@ main > form > fieldset{
 }
 
 main > form > footer{
-  > button{
+  > .send{
     display: flex;
     width: 10rem;
     height: 3rem;
@@ -127,6 +128,12 @@ main > form > footer{
     &:hover:not(:active){
       cursor: pointer;
       transform: scale(1.03);
+    }
+
+    &[disabled]{
+      background: #FFF;
+      color: #B3B3B3;
+      border: 1px #B3B3B3 solid;
     }
   }
 }
