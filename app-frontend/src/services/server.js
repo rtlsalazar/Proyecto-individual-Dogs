@@ -13,7 +13,7 @@ import axios from "axios";
 /* Crea una instancia de axios para usar la misma URL base.                       */
 /*--------------------------------------------------------------------------------*/
 const axiosAPI = axios.create({
-  baseURL : "http://192.168.100.44:3001"
+  baseURL : "https://henry-dogs-backend.onrender.com"
 });
 
 const apiRequest = async (method, url, request) => {

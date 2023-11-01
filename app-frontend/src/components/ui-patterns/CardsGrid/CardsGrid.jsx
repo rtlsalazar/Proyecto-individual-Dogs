@@ -78,12 +78,12 @@ function CardsGrid({allData}) {
 
     /*
     * Si el arreglo de temperamentos no está vacío, se filtra la lista de perros según su temperamento.
-    * Se verifica si algún elemento del arreglo de temperamentos coincide con algún elemento del arreglo de temperamentos del perro.
+    * Se verifica si todos los elementos del arreglo de temperamentos coincide con algún elemento del arreglo de temperamentos del perro.
     * Se utiliza el método split para separar los temperamentos del perro por comas y espacios.
     */
     if (filter.temperament.length !== 0) {
       resultingList = resultingList.filter(function(obj) {
-        return filter.temperament.some(function(value) {
+        return filter.temperament.every(function(value) {
           if (obj.temperament) {
             return obj.temperament.split(', ').includes(value);
           }

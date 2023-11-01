@@ -20,6 +20,7 @@ header{
 
 main{
   display: grid;
+  justify-content: center;
   /* para establecer el ancho maximo y minimo del contenido en la pantalla*/
   grid-template-columns: clamp(280px, 100vw, 1376px);
 

@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     build: {
-      outDir: "../build/app-frontend",
+      outDir: "build",
     },
     server: {
       port: 80,

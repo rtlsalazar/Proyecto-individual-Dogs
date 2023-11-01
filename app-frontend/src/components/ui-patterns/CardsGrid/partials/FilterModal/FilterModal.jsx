@@ -111,27 +111,27 @@ function FilterModal({modalRef, setFilter}) {
                 <label for="vehicle1">Playful</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Gentle"></input>
                 <label for="vehicle1">Gentle</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Energetic"></input>
                 <label for="vehicle1">Energetic</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Fearless"></input>
                 <label for="vehicle1">Fearless</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Independent"></input>
                 <label for="vehicle1">Independent</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Wild"></input>
                 <label for="vehicle1">Wild</label>
               </div>
               <div className="tile">
-                <input type="checkbox" name="temperament" value="Playful"></input>
+                <input type="checkbox" name="temperament" value="Dignified"></input>
                 <label for="vehicle1">Dignified</label>
               </div>
             </div>

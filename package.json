@@ -6,7 +6,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "postinstall": "(cd app-frontend && npm i) && (cd..) && (cd app-backend && npm i)",
-    "build": "(cd app-frontend && npm run build) && (cd..) && (cd app-backend && npm run build)"
+    "postinstall": "(cd ./app-frontend && npm i) && (cd..) && (cd ./app-backend && npm i)",
+    "build": "(cd ./app-frontend && npm run build) && (cd..) && (./cd app-backend && npm run build)"
   }
 }
